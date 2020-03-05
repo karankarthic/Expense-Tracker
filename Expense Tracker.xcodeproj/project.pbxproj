@@ -13,6 +13,14 @@
 		9777F525240E240100F8FD13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9777F523240E240100F8FD13 /* Main.storyboard */; };
 		9777F527240E240300F8FD13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9777F526240E240300F8FD13 /* Assets.xcassets */; };
 		9777F52A240E240300F8FD13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9777F528240E240300F8FD13 /* LaunchScreen.storyboard */; };
+		9777F532240E310400F8FD13 /* ExpenceAddingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F531240E310400F8FD13 /* ExpenceAddingVC.swift */; };
+		9777F534240E415900F8FD13 /* ExpenceProtocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F533240E415900F8FD13 /* ExpenceProtocal.swift */; };
+		9777F536240E546E00F8FD13 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F535240E546E00F8FD13 /* Presenter.swift */; };
+		9777F538240E547F00F8FD13 /* Intractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F537240E547F00F8FD13 /* Intractor.swift */; };
+		9777F53A240E549C00F8FD13 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F539240E549C00F8FD13 /* Router.swift */; };
+		9777F53C240E5A1100F8FD13 /* ExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F53B240E5A1100F8FD13 /* ExpenseViewController.swift */; };
+		9777F53E240E5FBA00F8FD13 /* SQLDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F53D240E5FBA00F8FD13 /* SQLDatabase.swift */; };
+		9777F540240FA12500F8FD13 /* ChoiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9777F53F240FA12400F8FD13 /* ChoiceVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		9777F526240E240300F8FD13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9777F529240E240300F8FD13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9777F52B240E240300F8FD13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9777F531240E310400F8FD13 /* ExpenceAddingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenceAddingVC.swift; sourceTree = "<group>"; };
+		9777F533240E415900F8FD13 /* ExpenceProtocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenceProtocal.swift; sourceTree = "<group>"; };
+		9777F535240E546E00F8FD13 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
+		9777F537240E547F00F8FD13 /* Intractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intractor.swift; sourceTree = "<group>"; };
+		9777F539240E549C00F8FD13 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		9777F53B240E5A1100F8FD13 /* ExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseViewController.swift; sourceTree = "<group>"; };
+		9777F53D240E5FBA00F8FD13 /* SQLDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLDatabase.swift; sourceTree = "<group>"; };
+		9777F53F240FA12400F8FD13 /* ChoiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +75,14 @@
 				9777F51D240E240100F8FD13 /* AppDelegate.swift */,
 				9777F51F240E240100F8FD13 /* SceneDelegate.swift */,
 				9777F521240E240100F8FD13 /* ViewController.swift */,
+				9777F53B240E5A1100F8FD13 /* ExpenseViewController.swift */,
+				9777F53F240FA12400F8FD13 /* ChoiceVC.swift */,
+				9777F531240E310400F8FD13 /* ExpenceAddingVC.swift */,
+				9777F533240E415900F8FD13 /* ExpenceProtocal.swift */,
+				9777F535240E546E00F8FD13 /* Presenter.swift */,
+				9777F537240E547F00F8FD13 /* Intractor.swift */,
+				9777F539240E549C00F8FD13 /* Router.swift */,
+				9777F53D240E5FBA00F8FD13 /* SQLDatabase.swift */,
 				9777F523240E240100F8FD13 /* Main.storyboard */,
 				9777F526240E240300F8FD13 /* Assets.xcassets */,
 				9777F528240E240300F8FD13 /* LaunchScreen.storyboard */,
@@ -138,9 +162,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9777F53A240E549C00F8FD13 /* Router.swift in Sources */,
+				9777F53E240E5FBA00F8FD13 /* SQLDatabase.swift in Sources */,
+				9777F538240E547F00F8FD13 /* Intractor.swift in Sources */,
+				9777F53C240E5A1100F8FD13 /* ExpenseViewController.swift in Sources */,
+				9777F536240E546E00F8FD13 /* Presenter.swift in Sources */,
+				9777F532240E310400F8FD13 /* ExpenceAddingVC.swift in Sources */,
 				9777F522240E240100F8FD13 /* ViewController.swift in Sources */,
+				9777F540240FA12500F8FD13 /* ChoiceVC.swift in Sources */,
 				9777F51E240E240100F8FD13 /* AppDelegate.swift in Sources */,
 				9777F520240E240100F8FD13 /* SceneDelegate.swift in Sources */,
+				9777F534240E415900F8FD13 /* ExpenceProtocal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
