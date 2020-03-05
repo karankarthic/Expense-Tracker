@@ -31,6 +31,11 @@ class Presenter:ExpenceViewToPresenterProtocol {
     func update(expense: Expense) -> Bool? {
         return intractor?.update(expense: expense)
     }
+    
+    func search(query: String) {
+        intractor?.search(query: query)
+    }
+       
    
 }
 

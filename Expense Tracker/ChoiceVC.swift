@@ -8,19 +8,22 @@
 
 import UIKit
 
-
+protocol ChoiceVCToMainVcdelgate:class{
+    
+    func excuteSearch(query:String)
+}
 
 class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
     
+    weak var delegate:ChoiceVCToMainVcdelgate?
     lazy var tableView = UITableView()
     
     lazy var date = Date()
-    
-    let choices = ["Today"]//,"This Month","Last Month"]
+    let choices = ["Today","This Month","Last Month"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.leftBarButtonItem = .init(title: "Back", style: .plain, target: self, action: #selector(close))
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -44,15 +47,23 @@ class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
-            
+            delegate?.excuteSearch(query: today())
         }
-//        else if indexPath.row == 1 {
-//
-//        }
-//        else
-//        {
-//
-//        }
+        if indexPath.row == 1 {
+            delegate?.excuteSearch(query: thisMonth())
+        }
+        
+        if indexPath.row == 2 {
+            delegate?.excuteSearch(query: lastmonth())
+        }
+        
+        
+        close()
+       
+    }
+    
+    @objc func close(){
+           self.dismiss(animated: true, completion: nil)
     }
     
     func today() -> String{

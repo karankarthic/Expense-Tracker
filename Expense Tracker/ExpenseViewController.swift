@@ -11,7 +11,7 @@ import UIKit
 class ExpenseViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     lazy var tableView : UITableView = UITableView()
-    lazy var filterButton : UIBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: nil)
+    lazy var filterButton : UIBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(presentChoiceVC))
     lazy var addButton : UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(presentAddingVC))
     weak var presenter:ExpenceViewToPresenterProtocol?
     var updatingID:Int? = nil
@@ -85,6 +85,14 @@ class ExpenseViewController: UIViewController,UITableViewDelegate,UITableViewDat
         let vc = UINavigationController.init(rootViewController: presentingVc)
         self.present(vc, animated: true, completion: nil)
     }
+    
+    @objc func presentChoiceVC(){
+    
+       let presentingVc = ChoiceVC()
+       presentingVc.delegate = self
+       let vc = UINavigationController.init(rootViewController: presentingVc)
+       self.present(vc, animated: true, completion: nil)
+    }
  
 }
 
@@ -147,6 +155,21 @@ extension ExpenseViewController: ExpencePresenterToViewProtocol
         print("in presenter")
         self.expenses = expenses
         reloadtableView()
+    }
+    
+    
+}
+
+extension ExpenseViewController:ChoiceVCToMainVcdelgate{
+    
+    func excuteSearch(query: String) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(clearSearch))
+        presenter?.search(query: query)
+    }
+    
+    @objc func clearSearch(){
+        self.navigationItem.rightBarButtonItem = addButton
+        presenter?.viewDidLoad()
     }
     
     

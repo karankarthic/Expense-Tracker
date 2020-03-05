@@ -17,6 +17,7 @@ protocol ExpenceViewToPresenterProtocol: class {
     func insert(expense:Expense) -> Bool?
     func delete(expense:Expense) -> Bool?
     func update(expense:Expense) -> Bool?
+    func search(query:String)
 }
 
 protocol ExpencePresenterToViewProtocol: class {
@@ -29,6 +30,7 @@ protocol ExpencePresenterToIntractorProtocol: class {
     func insert(expence:Expense) ->Bool
     func delete(expense: Expense)->Bool
     func update(expense: Expense) -> Bool
+    func search(query:String)
     
 }
 

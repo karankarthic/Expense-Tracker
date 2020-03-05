@@ -24,9 +24,7 @@ class Intractor:ExpencePresenterToIntractorProtocol {
                }
          createtable()
 //        dropTable()
-        search()
         //insert(expence:Expense(amount: 1, date: "01-02-2020", reason: "test"))
-        search()
     }
     
     func getFilePath() -> URL{
@@ -107,25 +105,20 @@ class Intractor:ExpencePresenterToIntractorProtocol {
         return isUpdate
         
     }
-    
-    // SELECT * FROM ExpensesTable where AddedDate = DATE('now') = this month
-    
-    func search(){
 
-        let dateformater = DateFormatter()
-        dateformater.dateFormat = "YYYY-MM-dd"
-        let currentdate = dateformater.string(from: Date())
-        let query = "SELECT * FROM ExpensesTable WHERE AddedDate = Date('\(currentdate)')"
-               do {
-                   guard let expenses = try datbase?.select(query: query) else{
-                       return
-                   }
-                
-                  // presenter?.reloadView(expenses: expenses)
-               } catch
-               {
-                   print(error)
-               }
+    
+    func search(query:String) {
+        
+        do {
+            guard let expenses = try datbase?.select(query: query) else{
+                return
+            }
+            
+            presenter?.reloadView(expenses: expenses)
+        } catch
+        {
+            print(error)
+        }
     }
     
     func dropTable(){
