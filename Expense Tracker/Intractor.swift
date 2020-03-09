@@ -23,6 +23,7 @@ class Intractor:ExpencePresenterToIntractorProtocol {
                    print(error)
                }
          createtable()
+//         dropTable()
 //        dropTable()
         //insert(expence:Expense(amount: 1, date: "01-02-2020", reason: "test"))
     }
@@ -140,4 +141,20 @@ class Intractor:ExpencePresenterToIntractorProtocol {
 
 }
 
+//MARK: - Singleline querys
+// let query = "SELECT * FROM ExpensesTable WHERE Amount is NULL"  - isEmpty
+// let query = "SELECT * FROM ExpensesTable WHERE Amount Not NULL" - Not Empty
+// let query = "SELECT * FROM ExpensesTable WHERE <columnName> Like <value>" - like
+// let query  = "SELECT * FROM ExpensesTable WHERE <columnName> is <value>" - is
+// let query  = "SELECT * FROM ExpensesTable WHERE <columnName> is not <value>" - isNot
+// let query = "SELECT * FROM ExpensesTable WHERE <columnName> like '%<value>'" - endWith
+// let query = "SELECT * FROM ExpensesTable WHERE <columnName> like '<value>%'" - startwith
+// let query = "SELECT * FROM ExpensesTable WHERE <columnName> like '%<value>%'" - contain
+// let query = "SELECT * FROM ExpensesTable WHERE <columnName> not like '%<value>%'" - Notcontain
 
+
+//MARK: - Date Query
+
+// let query = "SELECT * FROM ExpensesTable WHERE AddedDate < 'value'" - before
+// let query = "SELECT * FROM ExpensesTable WHERE AddedDate > 'value'" - after
+// let query = "Select * FROM ExpensesTable Wh"

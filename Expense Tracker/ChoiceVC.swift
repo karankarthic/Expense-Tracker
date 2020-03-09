@@ -76,7 +76,17 @@ class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
     }
     
     func thisMonth() -> String{
-        let query = "SELECT * FROM ExpensesTable where AddedDate = DATE('now')"
+        let comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+        let startOfMonth = Calendar.current.date(from: comp)!
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+        let startdate = dateformater.string(from: startOfMonth)
+        var comps2 = DateComponents()
+        comps2.month = 1
+        comps2.day = -1
+        let endOfMonth = Calendar.current.date(byAdding: comps2, to: startOfMonth)
+        let enddate = dateformater.string(from: endOfMonth!)
+        let query = "SELECT * FROM ExpensesTable where AddedDate BETWEEN date('\(startdate)') AND date('\(enddate)')"
         return query
     }
     
@@ -96,5 +106,55 @@ class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
         let query = "SELECT * FROM ExpensesTable WHERE AddedDate BETWEEN date('\(startdate)') AND date('\(enddate)')"
         return query
     }
+    
+    func numberOfDatesPlusOrMinus(int:Int) -> String{
+           var comp: DateComponents = Calendar.current.dateComponents([.year, .day,.month], from: Date())
+           comp.day = ((comp.day ?? 1) + (int))
+           let startOfMonth = Calendar.current.date(from: comp)!
+           let dateformater = DateFormatter()
+           dateformater.dateFormat = "YYYY-MM-dd"
+           let startdate = dateformater.string(from: startOfMonth)
+           return "\(startdate)"
+    }
+
+    func startOfWeek() -> Date? {
+        let indian = Calendar(identifier: .indian)
+        guard let sunday = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) else { return nil }
+        return indian.date(byAdding: .day, value: 0, to: sunday)
+    }
+
+    func endOfWeek() -> Date? {
+        let indian = Calendar(identifier: .indian)
+        guard let sunday = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: startOfWeek() ?? Date())) else { return nil }
+        return indian.date(byAdding: .day, value: 6, to: sunday)
+    }
+
+    func startOfLastWeek() -> Date? {
+        let indian = Calendar(identifier: .indian)
+        guard let sunday = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) else { return nil }
+        return indian.date(byAdding: .day, value: -7, to: sunday)
+    }
+
+    func endOfLastWeek() -> Date? {
+        let indian = Calendar(identifier: .indian)
+        guard let sunday = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: startOfLastWeek() ?? Date())) else { return nil }
+        return indian.date(byAdding: .day, value: 6, to: sunday)
+    }
+
+    func fromLastWeek()-> String {
+
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+
+        return "date('\(dateformater.string(from: startOfWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfWeek() ?? Date()))')"
+    }
+
+    func fromCurrentWeek()-> String{
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+
+        return "date('\(dateformater.string(from: startOfLastWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfLastWeek() ?? Date()))')"
+    }
+    
     
 }

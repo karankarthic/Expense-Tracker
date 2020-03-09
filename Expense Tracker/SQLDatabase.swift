@@ -156,7 +156,7 @@ class SQLiteDatabase {
             expenses.append(getExpenseFromDict(rowValue))
             qureyResult = sqlite3_step(queryStatement)
         }
-        print(expenses)
+        //print(expenses)
         return expenses
     }
     
