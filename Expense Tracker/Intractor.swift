@@ -159,5 +159,6 @@ class Intractor:ExpencePresenterToIntractorProtocol {
 // let query = "SELECT * FROM ExpensesTable WHERE AddedDate < 'value'" - before
 // let query = "SELECT * FROM ExpensesTable WHERE AddedDate > 'value'" - after
 // let query = ""SELECT * FROM ExpensesTable WHERE AddedDate = 'value'" - yesturday,toomarrow,current date
+// let query = "SELECT * FROM ExpensesTable WHERE AddedDate like '%<value>%'" - last,current ,next month or year
 // let query = "SELECT * FROM ExpensesTable WHERE AddedDate BETWEEN <'startDate'> AND <'endDate'>" - for other date quries
 // let query = "SELECT * FROM ExpensesTable WHERE AddedDate BETWEEN <'startDateLastWeek'> AND <'endDateCurrentWeek'>" - for last and current week or month or year
