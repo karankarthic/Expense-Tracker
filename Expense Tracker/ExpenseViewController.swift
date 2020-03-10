@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MetricKit
 
 class ExpenseViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
@@ -18,8 +19,13 @@ class ExpenseViewController: UIViewController,UITableViewDelegate,UITableViewDat
     var expenses:[Expense] = []
     var updatingExpense:Expense? = nil
     var isUpdatebuttonHidden = true
+     let metricKit = MXMetricManager.shared
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //let metricKit = MXMetricManager.shared
+        metricKit.add(self)
+        
         // Do any additional setup after loading the view.
         self.navigationItem.leftBarButtonItem = filterButton
         self.navigationItem.rightBarButtonItem = addButton
@@ -73,7 +79,11 @@ class ExpenseViewController: UIViewController,UITableViewDelegate,UITableViewDat
     
     func reloadtableView()
     {
+        let log: OSLog = MXMetricManager.makeLogHandle(category: "reload")
+        
+        mxSignpost(.begin, log: log, name: "tableLoad")
         self.tableView.reloadData()
+        mxSignpost(.end, log: log, name: "tableLoad")
     }
     
     @objc func presentAddingVC()
@@ -169,7 +179,21 @@ extension ExpenseViewController:ChoiceVCToMainVcdelgate{
     
     @objc func clearSearch(){
         self.navigationItem.rightBarButtonItem = addButton
+        
+    
         presenter?.viewDidLoad()
+    }
+    
+    
+}
+
+extension ExpenseViewController:MXMetricManagerSubscriber{
+    func didReceive(_ payloads: [MXMetricPayload]) {
+        for payload in payloads
+        {
+            print(payload.dictionaryRepresentation())
+            
+        }
     }
     
     

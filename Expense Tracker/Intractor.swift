@@ -17,7 +17,7 @@ class Intractor:ExpencePresenterToIntractorProtocol {
     init() {
          do {
                 datbase = try SQLiteDatabase.init(dbPath: getFilePath().path)
-               print("hi database")
+               //print("hi database")
                }catch
                {
                    print(error)
@@ -155,6 +155,9 @@ class Intractor:ExpencePresenterToIntractorProtocol {
 
 //MARK: - Date Query
 
+
 // let query = "SELECT * FROM ExpensesTable WHERE AddedDate < 'value'" - before
 // let query = "SELECT * FROM ExpensesTable WHERE AddedDate > 'value'" - after
-// let query = "Select * FROM ExpensesTable Wh"
+// let query = ""SELECT * FROM ExpensesTable WHERE AddedDate = 'value'" - yesturday,toomarrow,current date
+// let query = "SELECT * FROM ExpensesTable WHERE AddedDate BETWEEN <'startDate'> AND <'endDate'>" - for other date quries
+// let query = "SELECT * FROM ExpensesTable WHERE AddedDate BETWEEN <'startDateLastWeek'> AND <'endDateCurrentWeek'>" - for last and current week or month or year

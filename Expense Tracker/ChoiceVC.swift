@@ -156,5 +156,43 @@ class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
         return "date('\(dateformater.string(from: startOfLastWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfLastWeek() ?? Date()))')"
     }
     
+    func currentYear() -> String{
+        var comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+        comp.month = 1
+        let startOfMonth = Calendar.current.date(from: comp)!
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+        let startdate = dateformater.string(from: startOfMonth)
+        var comps2 = DateComponents()
+        // print(comps2.year)
+        comps2.year = comp.year
+        comps2.month = 12
+        comps2.day = 31
+        let endOfMonth = Calendar.current.date(from: comps2)
+        let enddate = dateformater.string(from: endOfMonth!)
+        let query = "SELECT * FROM ExpensesTable where AddedDate BETWEEN date('\(startdate)') AND date('\(enddate)')"
+        return query
+    }
+    
+    func lastYear() -> String{
+        var comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+        comp.year = (comp.year ?? 1) - 1
+        comp.month = 1
+        let startOfMonth = Calendar.current.date(from: comp)!
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+        let startdate = dateformater.string(from: startOfMonth)
+        var comps2 = DateComponents()
+        // print(comps2.year)
+        comps2.year = (comp.year ?? 1) - 1
+        comps2.month = 12
+        comps2.day = 31
+        let endOfMonth = Calendar.current.date(from: comps2)
+        let enddate = dateformater.string(from: endOfMonth!)
+        let query = "SELECT * FROM ExpensesTable where AddedDate BETWEEN date('\(startdate)') AND date('\(enddate)')"
+        return query
+    }
+    
+    
     
 }

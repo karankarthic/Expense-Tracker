@@ -29,7 +29,7 @@ class SQLiteDatabase {
             defer {
                 if dbPointer != nil {
                     sqlite3_close(dbPointer)
-                    print("hi")
+                    //print("hi")
                 }
             }
             let errorMessage = String(cString: sqlite3_errmsg(dbPointer))
@@ -68,7 +68,7 @@ class SQLiteDatabase {
           throw SQLiteError.Step(message: "error on creating table")
         }
         
-         print("table created.")
+//         print("table created.")
     }
     
     func insert(insertQuery:String) throws -> Bool
@@ -83,7 +83,7 @@ class SQLiteDatabase {
           throw SQLiteError.Step(message: "error on insert ")
         }
 
-         print("inserted.")
+//         print("inserted.")
         return true
     }
     
@@ -98,7 +98,7 @@ class SQLiteDatabase {
           throw SQLiteError.Step(message: "error on insert ")
         }
 
-         print("deleted.")
+//         print("deleted.")
         return true
         
     }
@@ -114,7 +114,7 @@ class SQLiteDatabase {
           throw SQLiteError.Step(message: "error on insert ")
         }
 
-         print("dropped.")
+//         print("dropped.")
         
     }
     
