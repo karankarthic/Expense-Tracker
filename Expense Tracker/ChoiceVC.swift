@@ -146,14 +146,14 @@ class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
         let dateformater = DateFormatter()
         dateformater.dateFormat = "YYYY-MM-dd"
 
-        return "date('\(dateformater.string(from: startOfWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfWeek() ?? Date()))')"
+        return "date('\(dateformater.string(from: startOfLastWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfLastWeek() ?? Date()))')"
     }
 
     func fromCurrentWeek()-> String{
         let dateformater = DateFormatter()
         dateformater.dateFormat = "YYYY-MM-dd"
 
-        return "date('\(dateformater.string(from: startOfLastWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfLastWeek() ?? Date()))')"
+        return "date('\(dateformater.string(from: startOfWeek() ?? Date()))') AND date('\(dateformater.string(from: endOfWeek() ?? Date()))')"
     }
     
     func currentYear() -> String{
@@ -192,6 +192,66 @@ class ChoiceVC:UIViewController , UITableViewDelegate, UITableViewDataSource {
         let query = "SELECT * FROM ExpensesTable where AddedDate BETWEEN date('\(startdate)') AND date('\(enddate)')"
         return query
     }
+    
+    func nextYear() -> String{
+        var comp: DateComponents = Calendar.current.dateComponents([.year, .month], from: Date())
+        comp.year = (comp.year ?? 1) + 1
+        comp.month = 1
+        let startOfMonth = Calendar.current.date(from: comp)!
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+        let startdate = dateformater.string(from: startOfMonth)
+        var comps2 = DateComponents()
+        print(comp.year)
+        print((comp.year ?? 1))
+        let year = (comp.year ?? 1)
+        comps2.year = year - 1
+        comps2.month = 12
+        comps2.day = 31
+        let endOfMonth = Calendar.current.date(from: comps2)
+        let enddate = dateformater.string(from: endOfMonth!)
+        let query = "SELECT * FROM ExpensesTable where AddedDate BETWEEN date('\(startdate)') AND date('\(enddate)')"
+        return query
+    }
+    
+    func nextNWeek(int:Int) -> String{
+          let indian = Calendar(identifier: .indian)
+          guard let sunday = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) else { return "" }
+          let startDateofcurrent = indian.date(byAdding: .day, value: 7, to: sunday)
+
+          let nth = (int * 7)
+          let startDate = indian.date(byAdding: .day, value: nth, to: sunday)
+
+          guard let sunday2 = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: startDate ?? Date())) else { return "" }
+          let endDate = indian.date(byAdding: .day, value: 6, to: sunday2)
+
+          let dateformater = DateFormatter()
+          dateformater.dateFormat = "YYYY-MM-dd"
+
+          return "date('\(dateformater.string(from: startDateofcurrent ?? Date()))') AND date('\(dateformater.string(from: endDate ?? Date()))')"
+    }
+    
+    func lastNWeek(int:Int) -> String{
+        let indian = Calendar(identifier: .indian)
+        guard let sunday = indian.date(from: indian.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date())) else { return "" }
+        let startDateofcurrent = indian.date(byAdding: .day, value: 0, to: sunday)
+         var comp: DateComponents = Calendar.current.dateComponents([.year, .month,.day], from:startDateofcurrent ?? Date())
+         comp.day = ((comp.day ?? 1) - 1)
+         let endDate = Calendar.current.date(from: comp)!
+        let nth = (int * 7)
+
+        let startDate = indian.date(byAdding: .day, value: -(nth), to: sunday)!
+
+
+
+        let dateformater = DateFormatter()
+        dateformater.dateFormat = "YYYY-MM-dd"
+
+        return "date('\(dateformater.string(from: startDate ))') AND date('\(dateformater.string(from: endDate))')"
+    
+    }
+    
+    
     
     
     
